@@ -15,7 +15,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     private var isInit: Bool = true
     
     //// 样式模型数据
-    var stytleModel: QSBaseBannerModel = QSBaseBannerModel() {
+    public var stytleModel: QSBaseBannerModel = QSBaseBannerModel() {
         didSet {
             // 设置定时器
             if self.stytleModel.isAutoRun {
@@ -24,7 +24,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         }
     }
     /// 图片数组
-    var dataArray: Array<Any> = Array.init() {
+    public var dataArray: Array<Any> = Array.init() {
         didSet {
             self.itemCount = dataArray.count
             
@@ -41,11 +41,11 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     
     // MARK: - 子控件
-    var collectionView: UICollectionView!
-    var pageControl: QSPageControl?
-    var itemCount: Int = 0
-    var timer: Timer?
-    var selectedBlock: ((Int) -> ())?
+    public var collectionView: UICollectionView!
+    public var pageControl: QSPageControl?
+    public var itemCount: Int = 0
+    public var timer: Timer?
+    public var selectedBlock: ((Int) -> ())?
     
     /// 初始化
     ///
