@@ -54,7 +54,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     ///   - imageArray: 图片数组
     ///   - stytleModel: 样式模型
     ///   - selectBlock: 选中的回调
-    convenience init(frame: CGRect, imageArray: Array<String>, stytleModel: QSBaseBannerModel, selectBlock: @escaping ((Int) -> ())) {
+    convenience public init(frame: CGRect, imageArray: Array<String>, stytleModel: QSBaseBannerModel, selectBlock: @escaping ((Int) -> ())) {
         self.init(frame: frame)
         
         self.setValue(stytleModel, forKey: "qs_stytleModel")
