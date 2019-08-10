@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = 支持普通轮播，卡片式轮播等
+  spec.description  = "支持普通轮播，卡片式轮播等"
 
   spec.homepage     = "https://www.jianshu.com/u/7be4a0163a7f"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -133,7 +133,7 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
 
-  spec.dependency "QSExtensions"
+  spec.dependency "QSExtensions""视图控件基类"
   spec.swift_version = '4.2'
 
 end
