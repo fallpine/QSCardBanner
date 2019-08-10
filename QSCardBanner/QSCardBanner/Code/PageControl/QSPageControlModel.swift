@@ -15,7 +15,7 @@ public enum QSPageControlLocation {
     case left       // 居左
 }
 
-public class QSPageControlModel {
+public class QSPageControlModel: NSObject {
     /// 点的宽度，默认6.0
     public var pointWidth: CGFloat = 6.0
     /// 点的高度，默认6.0

@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "QSCardBanner"
-  spec.version      = "0.0.5"
+  spec.version      = "0.0.6"
   spec.summary      = "轮播图."
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/fallpine/QSCardBanner.git", :tag => "0.0.5" }
+  spec.source       = { :git => "https://github.com/fallpine/QSCardBanner.git", :tag => "0.0.6" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -133,7 +133,7 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
 
-  spec.dependency "QSExtensions"
+  spec.dependency "QSExtensions/Qs"
   spec.swift_version = '4.2'
 
 end

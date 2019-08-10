@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class QSBaseBannerModel {
+public class QSBaseBannerModel: NSObject {
     /**
      *  定时器
      */

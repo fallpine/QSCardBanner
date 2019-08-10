@@ -62,7 +62,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         self.selectedBlock = selectBlock
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         isInit = true
     }
