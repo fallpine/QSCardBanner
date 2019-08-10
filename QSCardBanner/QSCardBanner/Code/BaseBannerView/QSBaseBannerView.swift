@@ -9,7 +9,7 @@
 import UIKit
 import QSExtensions
 
-public class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
+open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     private var cellOffsetX: CGFloat = 0.0
     private var cellOffsetY: CGFloat = 0.0
     private var isInit: Bool = true
@@ -71,11 +71,11 @@ public class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionVie
         timer?.qs_invalidate()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         self.cellOffsetX = (self.frame.size.width - self.stytleModel.itemSize.width) / 2.0
@@ -95,7 +95,7 @@ public class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionVie
     }
     
     // 使用kvc，undefine方法
-    override public func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         if key == "qs_stytleModel" { // 设置titleArray
             guard let newValue = value as? QSBaseBannerModel else {
                 return
