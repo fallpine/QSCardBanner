@@ -122,7 +122,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         return self.itemCount == 1 ? 1 : self.itemCount * 50
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         fatalError("必须使用子类创建视图，再layoutSubviews方法中注册cell，并重写collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)方法")
     }
     
@@ -216,7 +216,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     /// 创建PageControl
     private func qs_createPageControl() {
-        let pageControlModel = QSageControlModel()
+        let pageControlModel = QSPageControlModel()
         pageControlModel.pointWidth = self.stytleModel.pointWidth
         pageControlModel.pointHeight = self.stytleModel.pointHeight
         pageControlModel.pointSpace = self.stytleModel.pointSpace

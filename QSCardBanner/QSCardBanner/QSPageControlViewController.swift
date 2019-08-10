@@ -48,7 +48,7 @@ class QSPageControlViewController: UIViewController {
     }
     
     private lazy var normalPageC: QSPageControl = {
-        let pageControlModel = QSageControlModel()
+        let pageControlModel = QSPageControlModel()
         pageControlModel.pointWidth = 8.0
         pageControlModel.pointHeight = 8.0
         pageControlModel.pointSpace = 17.0
@@ -61,7 +61,7 @@ class QSPageControlViewController: UIViewController {
     }()
     
     private lazy var ovalPageC: QSPageControl = {
-        let pageControlModel = QSageControlModel()
+        let pageControlModel = QSPageControlModel()
         pageControlModel.pointWidth = 8.0
         pageControlModel.pointHeight = 8.0
         pageControlModel.pointSpace = 17.0
@@ -79,7 +79,7 @@ class QSPageControlViewController: UIViewController {
     }()
     
     private lazy var imgPageC: QSPageControl = {
-        let pageControlModel = QSageControlModel()
+        let pageControlModel = QSPageControlModel()
         pageControlModel.pointWidth = 18.0
         pageControlModel.pointHeight = 18.0
         pageControlModel.pointSpace = 17.0

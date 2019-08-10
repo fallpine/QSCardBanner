@@ -9,6 +9,7 @@
 import UIKit
 
 public class QSBaseBannerViewLayout: UICollectionViewFlowLayout {
+    // MARK: - Property
     /// cell的大小
     var qs_itemSize: CGSize = CGSize.zero
     /// 是否是卡片式显示

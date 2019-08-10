@@ -21,7 +21,7 @@
 		04D4B4B722FE7D2200B4D9D4 /* QSBaseBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4B4B422FE7D2200B4D9D4 /* QSBaseBannerModel.swift */; };
 		04D4B4B822FE7D2200B4D9D4 /* QSBaseBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4B4B522FE7D2200B4D9D4 /* QSBaseBannerView.swift */; };
 		04D4B4BC22FE7D2B00B4D9D4 /* QSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4B4BA22FE7D2B00B4D9D4 /* QSPageControl.swift */; };
-		04D4B4BD22FE7D2B00B4D9D4 /* QSageControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4B4BB22FE7D2B00B4D9D4 /* QSageControlModel.swift */; };
+		04E6913522FEACEA000444A4 /* QSPageControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E6913422FEACEA000444A4 /* QSPageControlModel.swift */; };
 		5E875B6CBB503B5CF4E069CE /* Pods_QSCardBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F08FE51A7D09BDD63187282 /* Pods_QSCardBanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		04D4B4B422FE7D2200B4D9D4 /* QSBaseBannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QSBaseBannerModel.swift; sourceTree = "<group>"; };
 		04D4B4B522FE7D2200B4D9D4 /* QSBaseBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QSBaseBannerView.swift; sourceTree = "<group>"; };
 		04D4B4BA22FE7D2B00B4D9D4 /* QSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QSPageControl.swift; sourceTree = "<group>"; };
-		04D4B4BB22FE7D2B00B4D9D4 /* QSageControlModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QSageControlModel.swift; sourceTree = "<group>"; };
+		04E6913422FEACEA000444A4 /* QSPageControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QSPageControlModel.swift; sourceTree = "<group>"; };
 		0F08FE51A7D09BDD63187282 /* Pods_QSCardBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QSCardBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C317E2F96921A5406FEB6FF /* Pods-QSCardBanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSCardBanner.debug.xcconfig"; path = "Target Support Files/Pods-QSCardBanner/Pods-QSCardBanner.debug.xcconfig"; sourceTree = "<group>"; };
 		827B88E1EBD07138E5B0D51D /* Pods-QSCardBanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSCardBanner.release.xcconfig"; path = "Target Support Files/Pods-QSCardBanner/Pods-QSCardBanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				04D4B4BA22FE7D2B00B4D9D4 /* QSPageControl.swift */,
-				04D4B4BB22FE7D2B00B4D9D4 /* QSageControlModel.swift */,
+				04E6913422FEACEA000444A4 /* QSPageControlModel.swift */,
 			);
 			path = PageControl;
 			sourceTree = "<group>";
@@ -272,10 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E6913522FEACEA000444A4 /* QSPageControlModel.swift in Sources */,
 				04D4B4BC22FE7D2B00B4D9D4 /* QSPageControl.swift in Sources */,
 				04D4B4AD22FE7D0C00B4D9D4 /* QSImageBannerView.swift in Sources */,
 				04D4B4B022FE7D1A00B4D9D4 /* QSBannerViewController.swift in Sources */,
-				04D4B4BD22FE7D2B00B4D9D4 /* QSageControlModel.swift in Sources */,
 				04D4B4A722FE7D0500B4D9D4 /* QSTextBannerViewCell.swift in Sources */,
 				04D4B4B622FE7D2200B4D9D4 /* QSBaseBannerViewLayout.swift in Sources */,
 				04D4B4B722FE7D2200B4D9D4 /* QSBaseBannerModel.swift in Sources */,

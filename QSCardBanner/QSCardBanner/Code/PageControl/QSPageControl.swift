@@ -9,25 +9,26 @@
 import UIKit
 
 public class QSPageControl: UIView {
+    // MARK: - Property
     /// 点视图数组
-    var pageImgViewArray: Array<UIImageView> = Array.init()
+    public var pageImgViewArray: Array<UIImageView> = Array.init()
     
     /// 当前点
-    var currentPage: Int = 0 {
+    public var currentPage: Int = 0 {
         didSet {
             self.qs_createPointView()
         }
     }
     
     /// 点的个数
-    var numberOfPages: Int = 0 {
+    public var numberOfPages: Int = 0 {
         didSet {
             self.qs_createPointView()
         }
     }
     
     /// pageControl数据模型
-    var pageControlModel: QSageControlModel = QSageControlModel() {
+    public var pageControlModel: QSPageControlModel = QSPageControlModel() {
         didSet {
             self.qs_createPointView()
         }
@@ -41,13 +42,13 @@ public class QSPageControl: UIView {
     ///   - pages: 页数
     ///   - currentPage: 当前页
     ///   - model: 样式模型
-    convenience init(frame: CGRect, unmberOf pages: Int, currentPage: Int = 0, model: QSageControlModel?) {
+    convenience init(frame: CGRect, unmberOf pages: Int, currentPage: Int = 0, model: QSPageControlModel?) {
         self.init(frame: frame)
         
         if model != nil {
             self.pageControlModel = model!
         } else {
-            self.pageControlModel = QSageControlModel()
+            self.pageControlModel = QSPageControlModel()
         }
         self.currentPage = currentPage
         self.numberOfPages = pages
@@ -68,8 +69,9 @@ public class QSPageControl: UIView {
         self.qs_createPointView()
     }
     
+    // MARK: - Func
     /// 创建视图
-    func qs_createPointView() {
+    public func qs_createPointView() {
         // 如果不是椭圆的点，则不必每次都重新创建点视图
         if self.pageImgViewArray.count > 0 && !self.pageControlModel.isEllipse && self.pageImgViewArray.count == self.numberOfPages {
             for imgView in self.pageImgViewArray {
