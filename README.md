@@ -9,4 +9,4 @@
       <source id="mov" src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov">
       </audio> -->
 
-![img](https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov)
+![img](https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/screen_record.gif)
