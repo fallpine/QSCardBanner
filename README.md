@@ -3,4 +3,8 @@
 集成方法：直接用Pod导入，pod 'QSCardBanner'
 
 先看下效果：
-<img src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov" width="200"/>
+<!-- <img src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov" width="200"/> -->
+
+<audio id="audio" controls="" preload="none">
+      <source id="mov" src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov">
+      </audio>
