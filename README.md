@@ -5,6 +5,8 @@
 先看下效果：
 <!-- <img src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov" width="200"/> -->
 
-<audio id="audio" controls="" preload="none">
+<!-- <audio id="audio" controls="" preload="none">
       <source id="mov" src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov">
-      </audio>
+      </audio> -->
+
+![img](https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/record.mov)
