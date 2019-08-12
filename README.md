@@ -6,6 +6,7 @@
 
 <img src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/screen_record.gif" width="200"/>
 
+
 - #### 使用方法：继承QSBaseBannerView，实现自己的子类
 在子类中重写两个方法，类似下方的例子：
 ```
