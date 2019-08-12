@@ -22,7 +22,9 @@ class QSImageBannerView: QSBaseBannerView {
       override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QSImageBannerViewCell", for: indexPath) as!   QSImageBannerViewCell
       
-            // 设置cell中的内容
+            // cell的内容
+            let row = indexPath.item % self.itemCount;
+            let model = self.dataArray[row]     // Any类型
         
             return cell
       }
