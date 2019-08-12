@@ -85,8 +85,8 @@ class QSPageControlViewController: UIViewController {
         pageControlModel.pointSpace = 17.0
         pageControlModel.otherPointColor = .gray
         pageControlModel.currentPointColor = .red
-        pageControlModel.currentPointImage = "pageControlSelected"
-        pageControlModel.otherPointImage = "pageControlNormal"
+        pageControlModel.currentPointImage = "star1"
+        pageControlModel.otherPointImage = "star"
         pageControlModel.pageControlLocation = .right
         
         let pageC = QSPageControl.init(frame: .zero)

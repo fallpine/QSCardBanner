@@ -99,7 +99,7 @@ class QSBannerViewController: UIViewController {
         model.currentPointColor = .red
         model.currentPointImage = nil
         model.otherPointImage = nil
-        model.pageControlLocation = .middle
+        model.pageControlLocation = .left
         model.pointScale = 1.0
         model.isEllipse = false
         
@@ -156,16 +156,16 @@ class QSBannerViewController: UIViewController {
         model.isNeedPageControl = true
         model.pageControlBottomMargin = 0.0
         model.pageControlHeight = 30.0
-        model.pointWidth = 6.0
-        model.pointHeight = 6.0
+        model.pointWidth = 12.0
+        model.pointHeight = 12.0
         model.pointSpace = 8.0
         model.otherPointColor = .green
         model.currentPointColor = .purple
-        model.currentPointImage = nil
-        model.otherPointImage = nil
-        model.pageControlLocation = .left
-        model.pointScale = 2.0
-        model.isEllipse = true
+        model.currentPointImage = "star1"
+        model.otherPointImage = "star"
+        model.pageControlLocation = .middle
+        model.pointScale = 1.0
+        model.isEllipse = false
         
         model.itemSize = CGSize.init(width: UIScreen.main.bounds.width - 60.0, height: 200.0)
         model.itemWidthMargin = 0.0
