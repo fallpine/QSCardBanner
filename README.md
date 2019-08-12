@@ -2,7 +2,7 @@
 这是一个轮播器的基类，其中QSBaseBannerView不能直接使用，使用方法下面会详细说明；但里面的QSPageControl可以单独拿出来使用
 - #### 集成方法：直接用Pod导入，pod 'QSCardBanner'
 
-先看下效果：录屏后转为gif有点模糊，可以直接下载demo，运行查看效果
+先看下效果：录屏后转为gif有点模糊，可以直接下载demo，运行查看效果，demo中演示的图片来自百度图片，如有版权问题，请联系我删除
 
 <img src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/screen_record.gif" width="200"/>
 
@@ -62,6 +62,16 @@ private lazy var imagesCycleView: QSImageBannerView = {
       imagesCycleView.stytleModel = model
       return imagesCycleView
 }()
+```
+
+- #### 使用banner
+```
+imagesCycleView.dataArray = 轮播器内容数组<Any>
+
+// 选中cell响应事件
+imagesCycleView.selectedBlock = { (index) in
+      print("imagesCycleView --- ", index)
+}
 ```
 
 - #### 单独使用QSPageControl，QSPageControlModel中的属性注释写的挺清楚的，这里就不赘述了
