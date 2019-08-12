@@ -1,13 +1,12 @@
 # QSCardBanner
 这是一个轮播器的基类，其中QSBaseBannerView不能直接使用，使用方法下面会详细说明；但里面的QSPageControl可以单独拿出来使用
-- 集成方法：直接用Pod导入，pod 'QSCardBanner'
+- ###### 集成方法：直接用Pod导入，pod 'QSCardBanner'
 
-- 先看下效果：
+- 先看下效果：录屏后转为gif有点模糊，可以直接下载demo，运行查看效果
 
 <img src="https://github.com/fallpine/QSCardBanner/blob/master/Screenshots/screen_record.gif" width="200"/>
-录屏有转为gif有点模糊，可以直接下载demo，运行查看效果
 
-- 使用方法：继承QSBaseBannerView，实现自己的子类
+- ###### 使用方法：继承QSBaseBannerView，实现自己的子类
 在子类中重写两个方法，类似下方的例子：
 ```
 class QSImageBannerView: QSBaseBannerView {
@@ -29,7 +28,7 @@ class QSImageBannerView: QSBaseBannerView {
 }
 ```
 
-- 接着创建banner，QSBaseBannerModel中的属性注释写的挺清楚的，这里就不赘述了
+- ###### 接着创建banner，QSBaseBannerModel中的属性注释写的挺清楚的，这里就不赘述了
 ```
 private lazy var imagesCycleView: QSImageBannerView = {
       let model = QSBaseBannerModel.init()
@@ -64,7 +63,7 @@ private lazy var imagesCycleView: QSImageBannerView = {
 }()
 ```
 
-- 单独使用QSPageControl，QSPageControlModel中的属性注释写的挺清楚的，这里就不赘述了
+- ###### 单独使用QSPageControl，QSPageControlModel中的属性注释写的挺清楚的，这里就不赘述了
 ```
 private lazy var ovalPageC: QSPageControl = {
       let pageControlModel = QSPageControlModel()
