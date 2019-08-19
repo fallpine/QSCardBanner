@@ -9,18 +9,17 @@
 import UIKit
 
 class QSTextBannerView: QSBaseBannerView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.collectionView.register(QSTextBannerViewCell.self, forCellWithReuseIdentifier: "QSTextBannerViewCell")
+}
+
+extension QSTextBannerView: QSBannerViewInterface {
+    func qs_bannerViewRegisterCell(_ bannerView: QSBaseBannerView, collectionView: UICollectionView) {
+        collectionView.register(QSTextBannerViewCell.self, forCellWithReuseIdentifier: "QSTextBannerViewCell")
     }
     
-    // MARK: - override
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func qs_bannerView(_ bannerView: QSBaseBannerView, collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, itemIndex: Int) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QSTextBannerViewCell", for: indexPath) as! QSTextBannerViewCell
         
-        let row = indexPath.item % self.itemCount;
-        let title = self.dataArray[row]
+        let title = self.dataArray[itemIndex]
         cell.text = (title as? String) ?? ""
         
         return cell

@@ -9,10 +9,28 @@
 import UIKit
 import QSExtensions
 
+public protocol QSBannerViewInterface {
+    /// 注册轮播图的cell
+    ///
+    /// - Parameters:
+    ///   - bannerView: 轮播图
+    func qs_bannerViewRegisterCell(_ bannerView: QSBaseBannerView, collectionView: UICollectionView)
+    
+    /// 创建轮播图的cell
+    ///
+    /// - Parameters:
+    ///   - bannerView: 轮播图
+    ///   - indexPath: indexPath
+    ///   - itemIndex: 第几个item
+    /// - Returns: collectionViewCell
+    func qs_bannerView(_ bannerView: QSBaseBannerView, collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, itemIndex: Int) -> UICollectionViewCell
+}
+
 open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     private var cellOffsetX: CGFloat = 0.0
     private var cellOffsetY: CGFloat = 0.0
     private var isInit: Bool = true
+    private var child: QSBannerViewInterface!
     
     //// 样式模型数据
     public var stytleModel: QSBaseBannerModel = QSBaseBannerModel() {
@@ -41,7 +59,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     
     // MARK: - 子控件
-    public var collectionView: UICollectionView!
+    private var collectionView: UICollectionView!
     public var pageControl: QSPageControl?
     public var itemCount: Int = 0
     public var timer: Timer?
@@ -65,6 +83,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     override public init(frame: CGRect) {
         super.init(frame: frame)
         isInit = true
+        child = self as? QSBannerViewInterface
     }
     
     deinit {
@@ -92,6 +111,9 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             self.qs_createPageControl()
             self.pageControl?.isHidden = !self.stytleModel.isNeedPageControl
         }
+        
+        // 注册cell
+        child.qs_bannerViewRegisterCell(self, collectionView: collectionView)
     }
     
     // 使用kvc，undefine方法
@@ -122,8 +144,8 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         return self.itemCount == 1 ? 1 : self.itemCount * 50
     }
     
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError("必须使用子类创建视图，再layoutSubviews方法中注册cell，并重写collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath)方法")
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return child.qs_bannerView(self, collectionView: collectionView, cellForItemAt: indexPath, itemIndex: indexPath.item % itemCount)
     }
     
     // MARK: - UICollectionViewDelegate
