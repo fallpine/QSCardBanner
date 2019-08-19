@@ -8,26 +8,21 @@
 
 
 - #### 使用方法：继承QSBaseBannerView，实现自己的子类
-在子类中重写两个方法，类似下方的例子：
+在子类中实现协议（QSBannerViewInterface）中的方法：
 ```
-class QSImageBannerView: QSBaseBannerView {
-      override func layoutSubviews() {
-            super.layoutSubviews()
-      
-            // 注册collectionViewCell
-            self.collectionView.register(QSImageBannerViewCell.self, forCellWithReuseIdentifier: "QSImageBannerViewCell")
-      }
+extension QSImageBannerView: QSBannerViewInterface {
+    func qs_bannerViewRegisterCell(_ bannerView: QSBaseBannerView, collectionView: UICollectionView) {
+        collectionView.register(QSImageBannerViewCell.self, forCellWithReuseIdentifier: "QSImageBannerViewCell")
+    }
     
-      // MARK: - override
-      override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QSImageBannerViewCell", for: indexPath) as!   QSImageBannerViewCell
-      
-            // cell的内容
-            let row = indexPath.item % self.itemCount;
-            let model = self.dataArray[row]     // Any类型
+    func qs_bannerView(_ bannerView: QSBaseBannerView, collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, itemIndex: Int) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QSImageBannerViewCell", for: indexPath) as! QSImageBannerViewCell
         
-            return cell
-      }
+        let imageName = self.dataArray[itemIndex]
+        cell.qs_setImage(imgName: (imageName as? String) ?? "", placeholder: "")
+        
+        return cell
+    }
 }
 ```
 
