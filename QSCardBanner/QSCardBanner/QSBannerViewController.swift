@@ -29,9 +29,7 @@ class QSBannerViewController: UIViewController {
             make.width.equalTo(UIScreen.main.bounds.width)
         }
         
-        imagesCycleView1.dataArray = ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550900621459&di=a284dcb615570c39251c16d82c10321c&imgtype=0&src=http%3A%2F%2Fwww.pptbz.com%2Fpptpic%2FUploadFiles_6909%2F201306%2F2013062320262198.jpg",
-                                     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550900653396&di=16da218d8d8b0eb1d1fd73a5dc2637bb&imgtype=0&src=http%3A%2F%2Fwww.pptok.com%2Fwp-content%2Fuploads%2F2012%2F08%2Fxunguang-4.jpg",
-                                     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550900670112&di=2a4c19d6a1b8cab6566ef29725f6303d&imgtype=0&src=http%3A%2F%2Fimg.bimg.126.net%2Fphoto%2FZZ5EGyuUCp9hBPk6_s4Ehg%3D%3D%2F5727171351132208489.jpg"]
+        imagesCycleView1.dataArray = ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550900621459&di=a284dcb615570c39251c16d82c10321c&imgtype=0&src=http%3A%2F%2Fwww.pptbz.com%2Fpptpic%2FUploadFiles_6909%2F201306%2F2013062320262198.jpg"]
         imagesCycleView1.selectedBlock = { (index) in
             print("imagesCycleView1 --- ", index)
         }

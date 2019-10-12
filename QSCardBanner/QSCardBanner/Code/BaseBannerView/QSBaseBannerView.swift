@@ -46,6 +46,10 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         didSet {
             self.itemCount = dataArray.count
             
+            if dataArray.count <= 1 {
+                timer?.qs_invalidate()
+            }
+            
             if let collectionV = self.collectionView {
                 collectionV.reloadData()
                 // 跳转到中间显示
