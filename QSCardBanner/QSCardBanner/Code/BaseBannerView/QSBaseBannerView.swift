@@ -191,7 +191,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         // 判断是否是第一个或最后一个item
         if self.stytleModel.scrollDirection == .horizontal {
             var index = Int((scrollView.contentOffset.x + cellOffsetX) / self.stytleModel.itemSize.width)
-            if index == self.itemCount * 50 || index == 0 {
+            if index == (self.itemCount * 50 - 1) || index == 0 {
                 index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
                 let offset = self.stytleModel.itemSize.width * CGFloat(self.itemCount) * 50 * 0.5 - cellOffsetX
                 self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
@@ -206,7 +206,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             }
         } else {
             var index = Int((scrollView.contentOffset.y + cellOffsetY) / self.stytleModel.itemSize.height)
-            if index == self.itemCount * 50 || index == 0 {
+            if index == (self.itemCount * 50 - 1) || index == 0 {
                 index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
                 let offset = self.stytleModel.itemSize.height * CGFloat(self.itemCount) * 50 * 0.5 - cellOffsetY
                 self.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
@@ -269,7 +269,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             // 判断是否是第一个或最后一个item
             if self.stytleModel.scrollDirection == .horizontal {
                 var index = Int((self.collectionView.contentOffset.x + self.cellOffsetX) / self.stytleModel.itemSize.width)
-                if index == self.itemCount * 50 || index == 0 {
+                if index == (self.itemCount * 50 - 1) || index == 0 {
                     index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
                     let offset = self.stytleModel.itemSize.width * CGFloat(self.itemCount) * 50 * 0.5 - self.cellOffsetX
                     self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
@@ -286,7 +286,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
                 self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: true)
             } else {
                 var index = Int((self.collectionView.contentOffset.y + self.cellOffsetY) / self.stytleModel.itemSize.height)
-                if index == self.itemCount * 50 || index == 0 {
+                if index == (self.itemCount * 50 - 1) || index == 0 {
                     index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
                     let offset = self.stytleModel.itemSize.height * CGFloat(self.itemCount) * 50 * 0.5 - self.cellOffsetY
                     self.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
