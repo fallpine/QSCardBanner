@@ -188,6 +188,10 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             self.timer?.qs_pause()
         }
         
+        if self.itemCount <= 1 {
+            return
+        }
+        
         // 判断是否是第一个或最后一个item
         if self.stytleModel.scrollDirection == .horizontal {
             var index = Int((scrollView.contentOffset.x + cellOffsetX) / self.stytleModel.itemSize.width)
