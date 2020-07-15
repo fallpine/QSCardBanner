@@ -47,7 +47,9 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             self.itemCount = dataArray.count
             
             if dataArray.count <= 1 {
-                timer?.qs_invalidate()
+                timer?.qs_pause()
+            } else {
+                timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
             }
             
             if let collectionV = self.collectionView {
