@@ -107,6 +107,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         self.cellOffsetY = (self.frame.size.height - self.stytleModel.itemSize.height) / 2.0
         
         if let _ = self.collectionView {
+            self.collectionView.frame = self.bounds
         } else {
             // 创建CollectionView
             self.qs_createCollectionView()
