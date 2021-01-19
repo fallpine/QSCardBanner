@@ -70,6 +70,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     public var itemCount: Int = 0
     public var timer: Timer?
     public var selectedBlock: ((Int) -> ())?
+    private var collectionViewLayer: QSBaseBannerViewLayout?
     
     /// 初始化
     ///
@@ -165,6 +166,16 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     // MARK: - UIScrollViewDelegate
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if self.stytleModel.scrollDirection == .horizontal {
+            let offsetX = (scrollView.contentOffset.x + collectionView.frame.width / 2.0 - stytleModel.itemSize.width / 2.0) / stytleModel.itemSize.width
+            let index = round(offsetX)
+            collectionViewLayer?.qs_dragItemIndex = Int(index)
+        } else {
+            let offsetY = (scrollView.contentOffset.y + collectionView.frame.height / 2.0 - stytleModel.itemSize.height / 2.0) / stytleModel.itemSize.height
+            let index = round(offsetY)
+            collectionViewLayer?.qs_dragItemIndex = Int(index)
+        }
+        
         // 暂停定时器
         if self.timer != nil {
             self.timer?.qs_pause()
@@ -232,7 +243,8 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     // MARK: - Private Methods
     /// 创建CollectionView
     private func qs_createCollectionView() {
-        let layout = QSBaseBannerViewLayout.init(itemSize: self.stytleModel.itemSize, itemWidthMargin: self.stytleModel.itemWidthMargin, itemHeightMargin: self.stytleModel.itemHeigtMargin, isCardStytle: self.stytleModel.isCardStytle, visibleCount: self.stytleModel.visibleCount, scrollDirection: self.stytleModel.scrollDirection)
+        let layout = QSBaseBannerViewLayout.init(itemSize: stytleModel.itemSize, itemWidthMargin: stytleModel.itemWidthMargin, itemHeightMargin: stytleModel.itemHeigtMargin, isCardStytle: stytleModel.isCardStytle, visibleCount: stytleModel.visibleCount, scrollDirection: stytleModel.scrollDirection, isPagingEnabled: stytleModel.isPagingEnabled)
+        collectionViewLayer = layout
         
         // collectionView
         collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)

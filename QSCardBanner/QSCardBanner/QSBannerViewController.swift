@@ -140,6 +140,7 @@ class QSBannerViewController: UIViewController {
         model.visibleCount = 3
         model.scrollDirection = .horizontal
         model.collectionViewBgColor = .gray
+        model.isPagingEnabled = false
         
         let imagesCycleView = QSImageBannerView.init(frame: .zero)
         imagesCycleView.stytleModel = model
@@ -172,6 +173,7 @@ class QSBannerViewController: UIViewController {
         model.visibleCount = 3
         model.scrollDirection = .horizontal
         model.collectionViewBgColor = .gray
+        model.isPagingEnabled = true
         
         let imagesCycleView = QSImageBannerView.init(frame: .zero)
         imagesCycleView.stytleModel = model

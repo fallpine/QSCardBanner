@@ -65,4 +65,6 @@ public class QSBaseBannerModel: NSObject {
     public var scrollDirection: UICollectionView.ScrollDirection = .horizontal
     /// collectionView的背景颜色
     public var collectionViewBgColor: UIColor = .white
+    /// 分页
+    public var isPagingEnabled: Bool = true
 }

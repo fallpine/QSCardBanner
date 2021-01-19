@@ -18,6 +18,10 @@ public class QSBaseBannerViewLayout: UICollectionViewFlowLayout {
     var qs_visibleCount: UInt = 1
     /// 滚动方向
     var qs_scrollDirection: UICollectionView.ScrollDirection = .horizontal
+    /// 拖拽的item下标
+    var qs_dragItemIndex: Int = 0
+    /// 分页
+    var qs_isPagingEnabled: Bool = true
     
     private var collectionViewWidth: CGFloat = 0.0
     private var collectionViewHeight: CGFloat = 0.0
@@ -36,7 +40,8 @@ public class QSBaseBannerViewLayout: UICollectionViewFlowLayout {
     ///   - visibleCount: 可视范围内的cell个数，默认 3
     ///   - leftRightMargin: 左右边距，默认 10.0
     ///   - topBottomMargin: 上下边距，默认 10.0
-    convenience init(itemSize: CGSize, itemWidthMargin: CGFloat = 0.0, itemHeightMargin: CGFloat = 0.0, isCardStytle: Bool = true, visibleCount:UInt = 3, scrollDirection: UICollectionView.ScrollDirection = .horizontal) {
+    ///   - isPagingEnabled: 分页
+    convenience init(itemSize: CGSize, itemWidthMargin: CGFloat = 0.0, itemHeightMargin: CGFloat = 0.0, isCardStytle: Bool = true, visibleCount:UInt = 3, scrollDirection: UICollectionView.ScrollDirection = .horizontal, isPagingEnabled: Bool = true) {
         self.init()
         
         self.qs_itemSize = itemSize
@@ -45,6 +50,7 @@ public class QSBaseBannerViewLayout: UICollectionViewFlowLayout {
         self.qs_isCardStytle = isCardStytle
         self.qs_visibleCount = visibleCount
         self.qs_scrollDirection = scrollDirection
+        self.qs_isPagingEnabled = isPagingEnabled
     }
     
     override init() {
@@ -179,22 +185,53 @@ public class QSBaseBannerViewLayout: UICollectionViewFlowLayout {
     ///   - proposedContentOffset: 本应该停留的位置
     ///   - velocity: velocity  力度, 速度
     override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        if self.qs_scrollDirection == .horizontal {
-            let offsetX = (proposedContentOffset.x + self.collectionViewWidth / 2.0 - self.itemWidth / 2.0) / self.itemWidth
-            let index = round(offsetX)
-            
-            let proposedOffsetX = self.itemWidth * index + self.itemWidth / 2.0 - self.collectionViewWidth / 2.0
-            let offset = CGPoint.init(x: proposedOffsetX, y: proposedContentOffset.y)
-            
-            return offset
+        if qs_isPagingEnabled {
+            if self.qs_scrollDirection == .horizontal {
+                // 最后要停留的位置
+                let offsetX = (proposedContentOffset.x + self.collectionViewWidth / 2.0 - self.itemWidth / 2.0) / self.itemWidth
+                let index1: Int = Int(round(offsetX))
+                
+                var index = qs_dragItemIndex
+                if index1 != qs_dragItemIndex {
+                    index = index1 > qs_dragItemIndex ? (qs_dragItemIndex + 1) : (qs_dragItemIndex - 1)
+                }
+                
+                let proposedOffsetX = self.itemWidth * CGFloat(index) + self.itemWidth / 2.0 - self.collectionViewWidth / 2.0
+                let offset = CGPoint.init(x: proposedOffsetX, y: proposedContentOffset.y)
+                
+                return offset
+            } else {
+                let offsetY = (proposedContentOffset.y + self.collectionViewHeight / 2.0 - self.itemHeight / 2.0) / self.itemHeight
+                let index1: Int = Int(round(offsetY))
+                
+                var index = qs_dragItemIndex
+                if index1 != qs_dragItemIndex {
+                    index = index1 > qs_dragItemIndex ? (qs_dragItemIndex + 1) : (qs_dragItemIndex - 1)
+                }
+                
+                let proposedOffsetY = self.itemHeight * CGFloat(index) + self.itemHeight / 2.0 - self.collectionViewHeight / 2.0
+                let offset = CGPoint.init(x: proposedContentOffset.x, y: proposedOffsetY)
+                
+                return offset
+            }
         } else {
-            let offsetY = (proposedContentOffset.y + self.collectionViewHeight / 2.0 - self.itemHeight / 2.0) / self.itemHeight
-            let index = round(offsetY)
-            
-            let proposedOffsetY = self.itemHeight * index + self.itemHeight / 2.0 - self.collectionViewHeight / 2.0
-            let offset = CGPoint.init(x: proposedContentOffset.x, y: proposedOffsetY)
-            
-            return offset
+            if self.qs_scrollDirection == .horizontal {
+                let offsetX = (proposedContentOffset.x + self.collectionViewWidth / 2.0 - self.itemWidth / 2.0) / self.itemWidth
+                let index = round(offsetX)
+                
+                let proposedOffsetX = self.itemWidth * index + self.itemWidth / 2.0 - self.collectionViewWidth / 2.0
+                let offset = CGPoint.init(x: proposedOffsetX, y: proposedContentOffset.y)
+                
+                return offset
+            } else {
+                let offsetY = (proposedContentOffset.y + self.collectionViewHeight / 2.0 - self.itemHeight / 2.0) / self.itemHeight
+                let index = round(offsetY)
+                
+                let proposedOffsetY = self.itemHeight * index + self.itemHeight / 2.0 - self.collectionViewHeight / 2.0
+                let offset = CGPoint.init(x: proposedContentOffset.x, y: proposedOffsetY)
+                
+                return offset
+            }
         }
     }
     
