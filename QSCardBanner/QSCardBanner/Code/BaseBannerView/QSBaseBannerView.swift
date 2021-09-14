@@ -273,7 +273,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         pageControlModel.pointScale = self.stytleModel.pointScale
         pageControlModel.isEllipse = self.stytleModel.isEllipse
         
-        let pageControl = QSPageControl.init(frame: CGRect.init(x: 0, y: self.frame.size.height - self.stytleModel.pageControlHeight - self.stytleModel.pageControlBottomMargin, width: self.frame.size.width, height: self.stytleModel.pageControlHeight), unmberOf: self.itemCount, currentPage: 0, model: pageControlModel)
+        let pageControl = QSPageControl.init(frame: CGRect.init(x: 0, y: self.frame.size.height - self.stytleModel.pageControlHeight - self.stytleModel.pageControlBottomMargin, width: self.frame.size.width, height: self.stytleModel.pageControlHeight), numberOf: self.itemCount, currentPage: 0, model: pageControlModel)
         pageControl.numberOfPages = self.itemCount
         
         self.addSubview(pageControl)

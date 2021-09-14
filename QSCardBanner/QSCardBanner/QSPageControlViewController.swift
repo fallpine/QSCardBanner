@@ -55,7 +55,7 @@ class QSPageControlViewController: UIViewController {
         pageControlModel.otherPointColor = .gray
         pageControlModel.currentPointColor = .red
         
-        let pageC = QSPageControl.init(frame: .zero, unmberOf: 5, currentPage: 0, model: pageControlModel)
+        let pageC = QSPageControl.init(frame: .zero, numberOf: 5, currentPage: 0, model: pageControlModel)
         
         return pageC
     }()

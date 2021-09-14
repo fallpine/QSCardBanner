@@ -42,7 +42,7 @@ public class QSPageControl: UIView {
     ///   - pages: 页数
     ///   - currentPage: 当前页
     ///   - model: 样式模型
-    convenience public init(frame: CGRect, unmberOf pages: Int, currentPage: Int = 0, model: QSPageControlModel?) {
+    convenience public init(frame: CGRect, numberOf pages: Int, currentPage: Int = 0, model: QSPageControlModel?) {
         self.init(frame: frame)
         
         if model != nil {
