@@ -47,7 +47,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             self.itemCount = dataArray.count
             
             if dataArray.count <= 1 {
-                timer?.qs_pause()
+                timer?.qs_suspend()
             } else {
                 timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
             }
@@ -178,7 +178,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         
         // 暂停定时器
         if self.timer != nil {
-            self.timer?.qs_pause()
+            self.timer?.qs_suspend()
         }
     }
     
@@ -199,7 +199,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // 暂停定时器
         if self.timer != nil && !isInit {
-            self.timer?.qs_pause()
+            self.timer?.qs_suspend()
         }
         
         if self.itemCount <= 1 {
