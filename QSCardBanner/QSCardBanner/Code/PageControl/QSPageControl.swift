@@ -16,21 +16,21 @@ public class QSPageControl: UIView {
     /// 当前点
     public var currentPage: Int = 0 {
         didSet {
-            self.qs_createPointView()
+            qs_createPointView()
         }
     }
     
     /// 点的个数
     public var numberOfPages: Int = 0 {
         didSet {
-            self.qs_createPointView()
+            qs_createPointView()
         }
     }
     
     /// pageControl数据模型
     public var pageControlModel: QSPageControlModel = QSPageControlModel() {
         didSet {
-            self.qs_createPointView()
+            qs_createPointView()
         }
     }
     
@@ -45,8 +45,8 @@ public class QSPageControl: UIView {
     convenience public init(frame: CGRect, numberOf pages: Int, currentPage: Int = 0, model: QSPageControlModel?) {
         self.init(frame: frame)
         
-        if model != nil {
-            self.pageControlModel = model!
+        if let model = model {
+            self.pageControlModel = model
         } else {
             self.pageControlModel = QSPageControlModel()
         }
@@ -66,68 +66,68 @@ public class QSPageControl: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         
-        self.qs_createPointView()
+        qs_createPointView()
     }
     
     // MARK: - Func
     /// 创建视图
     public func qs_createPointView() {
         // 如果不是椭圆的点，则不必每次都重新创建点视图
-        if self.pageImgViewArray.count > 0 && !self.pageControlModel.isEllipse && self.pageImgViewArray.count == self.numberOfPages {
-            for imgView in self.pageImgViewArray {
-                if self.pageControlModel.otherPointImage != nil {
-                    imgView.image = UIImage.init(named: (self.pageControlModel.otherPointImage)!)
+        if pageImgViewArray.count > 0 && !pageControlModel.isEllipse && pageImgViewArray.count == numberOfPages {
+            for imgView in pageImgViewArray {
+                if let otherPointImage = pageControlModel.otherPointImage {
+                    imgView.image = UIImage.init(named: otherPointImage)
                 } else {
-                    imgView.backgroundColor = self.pageControlModel.otherPointColor
+                    imgView.backgroundColor = pageControlModel.otherPointColor
                 }
             }
             
             // 当前点
-            let currentImgView = self.pageImgViewArray[self.currentPage]
-            if self.pageControlModel.currentPointImage != nil {
-                currentImgView.image = UIImage.init(named: (self.pageControlModel.currentPointImage)!)
+            let currentImgView = pageImgViewArray[currentPage]
+            if let currentPointImage = pageControlModel.currentPointImage {
+                currentImgView.image = UIImage.init(named: currentPointImage)
             } else {
-                currentImgView.backgroundColor = self.pageControlModel.currentPointColor
+                currentImgView.backgroundColor = pageControlModel.currentPointColor
             }
         }
         
         // 清除视图
-        for subView in self.subviews {
+        for subView in subviews {
             subView.removeFromSuperview()
         }
         
-        if self.numberOfPages <= 0 {
+        if numberOfPages <= 0 {
             return
         }
         
         // PageControl位置
         // X
         var startX: CGFloat = 0.0
-        let mainWidth = CGFloat(self.numberOfPages) * (self.pageControlModel.pointWidth + self.pageControlModel.pointSpace) - self.pageControlModel.pointSpace + self.pageControlModel.pointWidth * (self.pageControlModel.pointScale - 1.0)
+        let mainWidth = CGFloat(numberOfPages) * (pageControlModel.pointWidth + pageControlModel.pointSpace) - pageControlModel.pointSpace + pageControlModel.pointWidth * (pageControlModel.pointScale - 1.0)
         
-        switch self.pageControlModel.pageControlLocation {
+        switch pageControlModel.pageControlLocation {
         case .right:
-            startX = self.frame.size.width - mainWidth - 30.0
+            startX = frame.size.width - mainWidth - 30.0
         case .middle:
-            startX = (self.frame.size.width - mainWidth) / 2.0
+            startX = (frame.size.width - mainWidth) / 2.0
         case .left:
             startX = 30.0
         }
         
         // Y
-        let centerY: CGFloat = self.frame.size.height / 2.0
+        let centerY: CGFloat = frame.size.height / 2.0
         
         // 动态创建点
-        for page in 0 ..< self.numberOfPages {
-            if page == self.currentPage {    // 当前点
+        for page in 0 ..< numberOfPages {
+            if page == currentPage {    // 当前点
                 var pointWidth: CGFloat = 0.0
                 var pointHeight: CGFloat = 0.0
                 if self.pageControlModel.isEllipse {
-                    pointWidth = self.pageControlModel.pointWidth * self.pageControlModel.pointScale
-                    pointHeight = self.pageControlModel.pointHeight
+                    pointWidth = pageControlModel.pointWidth * pageControlModel.pointScale
+                    pointHeight = pageControlModel.pointHeight
                 } else {
-                    pointWidth = self.pageControlModel.pointWidth * self.pageControlModel.pointScale
-                    pointHeight = self.pageControlModel.pointHeight * self.pageControlModel.pointScale
+                    pointWidth = pageControlModel.pointWidth * pageControlModel.pointScale
+                    pointHeight = pageControlModel.pointHeight * pageControlModel.pointScale
                 }
                 
                 let currPointView = UIImageView.init(frame: CGRect.init(x: startX, y: 0.0, width: pointWidth, height: pointHeight))
@@ -138,26 +138,26 @@ public class QSPageControl: UIView {
                 pointCenter.y = centerY
                 currPointView.center = pointCenter
                 
-                if self.pageControlModel.currentPointImage != nil {
+                if pageControlModel.currentPointImage != nil {
                     currPointView.backgroundColor = UIColor.clear
-                    currPointView.image = UIImage.init(named: self.pageControlModel.currentPointImage!)
+                    currPointView.image = UIImage.init(named: pageControlModel.currentPointImage!)
                 } else {
                     currPointView.layer.cornerRadius = pointHeight / 2.0
                     currPointView.layer.masksToBounds = true
-                    currPointView.backgroundColor = self.pageControlModel.currentPointColor
+                    currPointView.backgroundColor = pageControlModel.currentPointColor
                 }
                 
                 // 设置startX的值
-                startX = currPointView.frame.maxX + self.pageControlModel.pointSpace
+                startX = currPointView.frame.maxX + pageControlModel.pointSpace
             } else {    // 未选中的点
                 var pointWidth: CGFloat = 0.0
                 var pointHeight: CGFloat = 0.0
-                if self.pageControlModel.isEllipse {
-                    pointWidth = self.pageControlModel.pointWidth
-                    pointHeight = self.pageControlModel.pointHeight
+                if pageControlModel.isEllipse {
+                    pointWidth = pageControlModel.pointWidth
+                    pointHeight = pageControlModel.pointHeight
                 } else {
-                    pointWidth = self.pageControlModel.pointWidth * self.pageControlModel.pointScale
-                    pointHeight = self.pageControlModel.pointHeight * self.pageControlModel.pointScale
+                    pointWidth = pageControlModel.pointWidth * pageControlModel.pointScale
+                    pointHeight = pageControlModel.pointHeight * pageControlModel.pointScale
                 }
                 
                 let otherPointView = UIImageView.init(frame: CGRect.init(x: startX, y: 0.0, width: pointWidth, height: pointHeight))
@@ -168,17 +168,17 @@ public class QSPageControl: UIView {
                 pointCenter.y = centerY
                 otherPointView.center = pointCenter
                 
-                if self.pageControlModel.otherPointImage != nil {
+                if pageControlModel.otherPointImage != nil {
                     otherPointView.backgroundColor = UIColor.clear
-                    otherPointView.image = UIImage.init(named: self.pageControlModel.otherPointImage!)
+                    otherPointView.image = UIImage.init(named: pageControlModel.otherPointImage!)
                 } else {
                     otherPointView.layer.cornerRadius = pointHeight / 2.0
                     otherPointView.layer.masksToBounds = true
-                    otherPointView.backgroundColor = self.pageControlModel.otherPointColor
+                    otherPointView.backgroundColor = pageControlModel.otherPointColor
                 }
                 
                 // 设置startX的值
-                startX = otherPointView.frame.maxX + self.pageControlModel.pointSpace
+                startX = otherPointView.frame.maxX + pageControlModel.pointSpace
             }
         }
     }

@@ -1,37 +1,23 @@
 PODS:
   - ETNavBarTransparent (1.1.3)
   - HandyJSON (5.0.2)
-  - Kingfisher (4.10.1)
-  - MJRefresh (3.5.0)
-  - QSExtensions (1.6.1):
-    - QSExtensions/Qs (= 1.6.1)
-    - QSExtensions/Rx (= 1.6.1)
-    - QSExtensions/Setting (= 1.6.1)
-    - QSExtensions/View (= 1.6.1)
-  - QSExtensions/Qs (1.6.1):
+  - Kingfisher (6.3.1)
+  - MJRefresh (3.7.5)
+  - QSExtensions (2.0.1):
     - ETNavBarTransparent
-    - Kingfisher
-    - RxCocoa
-    - RxSwift
-  - QSExtensions/Rx (1.6.1):
     - HandyJSON
+    - Kingfisher
     - MJRefresh
     - RxCocoa
     - RxSwift
-  - QSExtensions/Setting (1.6.1):
-    - QSExtensions/Qs
-    - QSExtensions/View
-    - RxCocoa
-    - RxSwift
-  - QSExtensions/View (1.6.1):
-    - QSExtensions/Qs
-  - RxCocoa (5.1.3):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.3):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.3)
-  - SnapKit (4.2.0)
+    - SnapKit
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - Kingfisher
@@ -53,14 +39,14 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   ETNavBarTransparent: dd05fd593b31d5d786e05631149ceea1e13b30ef
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
-  QSExtensions: f115a2649e616d08be40bcca83923712b4942728
-  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
-  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
-  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  QSExtensions: e0d210bf69305669437f34486dce0a9694095d65
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: c02071fdd8eb2f7bfc7affc6b86c0119548dd0b7
+PODFILE CHECKSUM: d3feae6427d8c6f504ac7ec5217b0f26c3c5a784
 
 COCOAPODS: 1.11.2

@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "QSCardBanner"
-  spec.version      = "1.0.9"
+  spec.version      = "2.0.0"
   spec.summary      = "轮播图."
 
   # This description is used to generate tags and improve search results.
@@ -63,7 +63,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-  spec.platform     = :ios, "8.0"
+  spec.platform     = :ios, "11.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -78,7 +78,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/fallpine/QSCardBanner.git", :tag => "1.0.9" }
+  spec.source       = { :git => "https://github.com/fallpine/QSCardBanner.git", :tag => "2.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,7 +89,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "QSCardBanner", "QSCardBanner/QSCardBanner/Code/**/*.{swift}"
+  # spec.source_files  = "QSCardBanner", "QSCardBanner/QSCardBanner/Code/**/*.{swift}"
   # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
@@ -133,7 +133,17 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
 
-  spec.dependency "QSExtensions/Qs"
-  spec.swift_version = '4.2'
+  # spec.dependency "QSExtensions/Qs"
+  spec.swift_version = '5'
+
+  # 划分文件夹
+  spec.subspec "BannerView" do |ss| 
+    ss.source_files = "QSCardBanner/QSCardBanner/QSCardBanner/Code/BaseBannerView/*.{swift}"
+    ss.dependency "QSCardBanner/PageControl"
+  end
+
+  spec.subspec "PageControl" do |ss| 
+    ss.source_files = "QSCardBanner/QSCardBanner/QSCardBanner/Code/PageControl/*.{swift}"
+  end
 
 end

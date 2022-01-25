@@ -36,30 +36,30 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     public var stytleModel: QSBaseBannerModel = QSBaseBannerModel() {
         didSet {
             // 设置定时器
-            if self.stytleModel.isAutoRun {
-                self.qs_createTimer()
+            if stytleModel.isAutoRun {
+                qs_createTimer()
             }
         }
     }
     /// 图片数组
     public var dataArray: Array<Any> = Array.init() {
         didSet {
-            self.itemCount = dataArray.count
+            itemCount = dataArray.count
             
             if dataArray.count <= 1 {
                 timer?.qs_suspend()
             } else {
-                timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
+                timer?.qs_restart(timeInterval: TimeInterval(stytleModel.timeInterval))
             }
             
-            if let collectionV = self.collectionView {
+            if let collectionV = collectionView {
                 collectionV.reloadData()
                 // 跳转到中间显示
-                self.qs_collectionViewJumpToCenter()
+                qs_collectionViewJumpToCenter()
             }
             
-            if let pageC = self.pageControl {
-                pageC.numberOfPages = self.itemCount
+            if let pageC = pageControl {
+                pageC.numberOfPages = itemCount
             }
         }
     }
@@ -104,20 +104,20 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     override open func layoutSubviews() {
         super.layoutSubviews()
         
-        self.cellOffsetX = (self.frame.size.width - self.stytleModel.itemSize.width) / 2.0
-        self.cellOffsetY = (self.frame.size.height - self.stytleModel.itemSize.height) / 2.0
+        cellOffsetX = (frame.size.width - stytleModel.itemSize.width) / 2.0
+        cellOffsetY = (frame.size.height - stytleModel.itemSize.height) / 2.0
         
-        if let _ = self.collectionView {
-            self.collectionView.frame = self.bounds
+        if let _ = collectionView {
+            collectionView.frame = self.bounds
         } else {
             // 创建CollectionView
-            self.qs_createCollectionView()
+            qs_createCollectionView()
         }
         
-        if let _ = self.pageControl {
+        if let _ = pageControl {
         } else {
-            self.qs_createPageControl()
-            self.pageControl?.isHidden = !self.stytleModel.isNeedPageControl
+            qs_createPageControl()
+            pageControl?.isHidden = !stytleModel.isNeedPageControl
         }
         
         // 注册cell
@@ -149,7 +149,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.itemCount == 1 ? 1 : self.itemCount * 50
+        return itemCount == 1 ? 1 : itemCount * 50
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -158,15 +158,15 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     // MARK: - UICollectionViewDelegate
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item % self.itemCount;
-        if self.selectedBlock != nil {
-            self.selectedBlock!(index)
+        let index = indexPath.item % itemCount;
+        if let block = selectedBlock {
+            block(index)
         }
     }
     
     // MARK: - UIScrollViewDelegate
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if self.stytleModel.scrollDirection == .horizontal {
+        if stytleModel.scrollDirection == .horizontal {
             let offsetX = (scrollView.contentOffset.x + collectionView.frame.width / 2.0 - stytleModel.itemSize.width / 2.0) / stytleModel.itemSize.width
             let index = round(offsetX)
             collectionViewLayer?.qs_dragItemIndex = Int(index)
@@ -177,65 +177,65 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         }
         
         // 暂停定时器
-        if self.timer != nil {
+        if timer != nil {
             self.timer?.qs_suspend()
         }
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // 重新开启定时器
-        if self.timer != nil {
-            self.timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
+        if timer != nil {
+            timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
         }
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         // 重新开启定时器
-        if self.timer != nil {
-            self.timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
+        if timer != nil {
+            timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
         }
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // 暂停定时器
-        if self.timer != nil && !isInit {
-            self.timer?.qs_suspend()
+        if timer != nil && !isInit {
+            timer?.qs_suspend()
         }
         
-        if self.itemCount <= 1 {
+        if itemCount <= 1 {
             return
         }
         
         // 判断是否是第一个或最后一个item
-        if self.stytleModel.scrollDirection == .horizontal {
-            var index = Int((scrollView.contentOffset.x + cellOffsetX) / self.stytleModel.itemSize.width)
-            if index == (self.itemCount * 50 - 1) || index == 0 {
-                index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
-                let offset = self.stytleModel.itemSize.width * CGFloat(self.itemCount) * 50 * 0.5 - cellOffsetX
-                self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
+        if stytleModel.scrollDirection == .horizontal {
+            var index = Int((scrollView.contentOffset.x + cellOffsetX) / stytleModel.itemSize.width)
+            if index == (itemCount * 50 - 1) || index == 0 {
+                index = Int(CGFloat(itemCount) * 50.0 * 0.5)
+                let offset = stytleModel.itemSize.width * CGFloat(itemCount) * 50 * 0.5 - cellOffsetX
+                collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
             }
             
             // 设置PageControl
-            if (self.itemCount > 0 && self.stytleModel.isNeedPageControl) {
-                let x = scrollView.contentOffset.x + cellOffsetX + self.stytleModel.itemSize.width / 2.0
-                let cellIndex = Int(x / self.stytleModel.itemSize.width)
-                let imgIndex = cellIndex % self.itemCount
-                self.pageControl?.currentPage = imgIndex
+            if (itemCount > 0 && stytleModel.isNeedPageControl) {
+                let x = scrollView.contentOffset.x + cellOffsetX + stytleModel.itemSize.width / 2.0
+                let cellIndex = Int(x / stytleModel.itemSize.width)
+                let imgIndex = cellIndex % itemCount
+                pageControl?.currentPage = imgIndex
             }
         } else {
-            var index = Int((scrollView.contentOffset.y + cellOffsetY) / self.stytleModel.itemSize.height)
-            if index == (self.itemCount * 50 - 1) || index == 0 {
-                index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
-                let offset = self.stytleModel.itemSize.height * CGFloat(self.itemCount) * 50 * 0.5 - cellOffsetY
-                self.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
+            var index = Int((scrollView.contentOffset.y + cellOffsetY) / stytleModel.itemSize.height)
+            if index == (itemCount * 50 - 1) || index == 0 {
+                index = Int(CGFloat(itemCount) * 50.0 * 0.5)
+                let offset = stytleModel.itemSize.height * CGFloat(itemCount) * 50 * 0.5 - cellOffsetY
+                collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
             }
             
             // 设置PageControl
             if (self.stytleModel.isNeedPageControl) {
-                let y = scrollView.contentOffset.y + cellOffsetY + self.stytleModel.itemSize.height / 2.0
-                let cellIndex = Int(y / self.stytleModel.itemSize.height)
-                let imgIndex = cellIndex % self.itemCount
-                self.pageControl?.currentPage = imgIndex
+                let y = scrollView.contentOffset.y + cellOffsetY + stytleModel.itemSize.height / 2.0
+                let cellIndex = Int(y / stytleModel.itemSize.height)
+                let imgIndex = cellIndex % itemCount
+                pageControl?.currentPage = imgIndex
             }
         }
     }
@@ -247,10 +247,10 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         collectionViewLayer = layout
         
         // collectionView
-        collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
+        collectionView = UICollectionView.init(frame: bounds, collectionViewLayout: layout)
         self.addSubview(collectionView)
         
-        collectionView.backgroundColor = self.stytleModel.collectionViewBgColor
+        collectionView.backgroundColor = stytleModel.collectionViewBgColor
         // 分页
         collectionView.isPagingEnabled = false
         collectionView.delegate = self
@@ -262,19 +262,19 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     /// 创建PageControl
     private func qs_createPageControl() {
         let pageControlModel = QSPageControlModel()
-        pageControlModel.pointWidth = self.stytleModel.pointWidth
-        pageControlModel.pointHeight = self.stytleModel.pointHeight
-        pageControlModel.pointSpace = self.stytleModel.pointSpace
-        pageControlModel.otherPointColor = self.stytleModel.otherPointColor
-        pageControlModel.currentPointColor = self.stytleModel.currentPointColor
-        pageControlModel.currentPointImage = self.stytleModel.currentPointImage
-        pageControlModel.otherPointImage = self.stytleModel.otherPointImage
-        pageControlModel.pageControlLocation = self.stytleModel.pageControlLocation
-        pageControlModel.pointScale = self.stytleModel.pointScale
-        pageControlModel.isEllipse = self.stytleModel.isEllipse
+        pageControlModel.pointWidth = stytleModel.pointWidth
+        pageControlModel.pointHeight = stytleModel.pointHeight
+        pageControlModel.pointSpace = stytleModel.pointSpace
+        pageControlModel.otherPointColor = stytleModel.otherPointColor
+        pageControlModel.currentPointColor = stytleModel.currentPointColor
+        pageControlModel.currentPointImage = stytleModel.currentPointImage
+        pageControlModel.otherPointImage = stytleModel.otherPointImage
+        pageControlModel.pageControlLocation = stytleModel.pageControlLocation
+        pageControlModel.pointScale = stytleModel.pointScale
+        pageControlModel.isEllipse = stytleModel.isEllipse
         
-        let pageControl = QSPageControl.init(frame: CGRect.init(x: 0, y: self.frame.size.height - self.stytleModel.pageControlHeight - self.stytleModel.pageControlBottomMargin, width: self.frame.size.width, height: self.stytleModel.pageControlHeight), numberOf: self.itemCount, currentPage: 0, model: pageControlModel)
-        pageControl.numberOfPages = self.itemCount
+        let pageControl = QSPageControl.init(frame: CGRect.init(x: 0, y: frame.size.height - stytleModel.pageControlHeight - stytleModel.pageControlBottomMargin, width: frame.size.width, height: stytleModel.pageControlHeight), numberOf: itemCount, currentPage: 0, model: pageControlModel)
+        pageControl.numberOfPages = itemCount
         
         self.addSubview(pageControl)
         self.pageControl = pageControl
@@ -282,60 +282,61 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     /// 设置定时器
     private func qs_createTimer() {
-        timer = Timer.qs_init(timeInterval: TimeInterval(self.stytleModel.timeInterval)) { [unowned self] (timer) in
-            self.isInit = false
+        timer = Timer.qs_timer(isPerform: false, interval: TimeInterval(stytleModel.timeInterval)) { [weak self] in
+            guard let weakSelf = self else { return }
+            weakSelf.isInit = false
             
             // 判断是否是第一个或最后一个item
-            if self.stytleModel.scrollDirection == .horizontal {
-                var index = Int((self.collectionView.contentOffset.x + self.cellOffsetX) / self.stytleModel.itemSize.width)
-                if index == (self.itemCount * 50 - 1) || index == 0 {
-                    index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
-                    let offset = self.stytleModel.itemSize.width * CGFloat(self.itemCount) * 50 * 0.5 - self.cellOffsetX
-                    self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
+            if weakSelf.stytleModel.scrollDirection == .horizontal {
+                var index = Int((weakSelf.collectionView.contentOffset.x + weakSelf.cellOffsetX) / weakSelf.stytleModel.itemSize.width)
+                if index == (weakSelf.itemCount * 50 - 1) || index == 0 {
+                    index = Int(CGFloat(weakSelf.itemCount) * 50.0 * 0.5)
+                    let offset = weakSelf.stytleModel.itemSize.width * CGFloat(weakSelf.itemCount) * 50 * 0.5 - weakSelf.cellOffsetX
+                    weakSelf.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
                 }
                 
                 // 调整偏移量
-                let result = (self.collectionView.contentOffset.x + self.cellOffsetX).truncatingRemainder(dividingBy: self.stytleModel.itemSize.width)   // 取余
+                let result = (weakSelf.collectionView.contentOffset.x + weakSelf.cellOffsetX).truncatingRemainder(dividingBy: weakSelf.stytleModel.itemSize.width)   // 取余
                 
-                var offset = self.collectionView.contentOffset.x + self.stytleModel.itemSize.width
-                if abs(result - self.stytleModel.itemSize.width) < 1.0 {
+                var offset = weakSelf.collectionView.contentOffset.x + weakSelf.stytleModel.itemSize.width
+                if abs(result - weakSelf.stytleModel.itemSize.width) < 1.0 {
                 } else {
                     offset -= result
                 }
-                self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: true)
+                weakSelf.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: true)
             } else {
-                var index = Int((self.collectionView.contentOffset.y + self.cellOffsetY) / self.stytleModel.itemSize.height)
-                if index == (self.itemCount * 50 - 1) || index == 0 {
-                    index = Int(CGFloat(self.itemCount) * 50.0 * 0.5)
-                    let offset = self.stytleModel.itemSize.height * CGFloat(self.itemCount) * 50 * 0.5 - self.cellOffsetY
-                    self.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
+                var index = Int((weakSelf.collectionView.contentOffset.y + weakSelf.cellOffsetY) / weakSelf.stytleModel.itemSize.height)
+                if index == (weakSelf.itemCount * 50 - 1) || index == 0 {
+                    index = Int(CGFloat(weakSelf.itemCount) * 50.0 * 0.5)
+                    let offset = weakSelf.stytleModel.itemSize.height * CGFloat(weakSelf.itemCount) * 50 * 0.5 - weakSelf.cellOffsetY
+                    weakSelf.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
                 }
                 
                 // 调整偏移量
-                let result = (self.collectionView.contentOffset.y + self.cellOffsetY).truncatingRemainder(dividingBy: self.stytleModel.itemSize.height)   // 取余
-                var offset = self.collectionView.contentOffset.y + self.stytleModel.itemSize.height
-                if abs(result - self.stytleModel.itemSize.width) < 1.0 {
+                let result = (weakSelf.collectionView.contentOffset.y + weakSelf.cellOffsetY).truncatingRemainder(dividingBy: weakSelf.stytleModel.itemSize.height)   // 取余
+                var offset = weakSelf.collectionView.contentOffset.y + weakSelf.stytleModel.itemSize.height
+                if abs(result - weakSelf.stytleModel.itemSize.width) < 1.0 {
                 } else {
                     offset -= result
                 }
-                self.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: true)
+                weakSelf.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: true)
             }
         }
     }
     
     /// collectionView跳转到中间那个cell显示
     func qs_collectionViewJumpToCenter() {
-        if self.itemCount == 1 {
+        if itemCount == 1 {
             return
         }
         
-        self.collectionView.superview?.layoutIfNeeded()
-        if self.stytleModel.scrollDirection == .horizontal {
-            let offset = self.stytleModel.itemSize.width * CGFloat(self.itemCount) * 50.0 * 0.5 - cellOffsetX
-            self.collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
+        collectionView.superview?.layoutIfNeeded()
+        if stytleModel.scrollDirection == .horizontal {
+            let offset = stytleModel.itemSize.width * CGFloat(itemCount) * 50.0 * 0.5 - cellOffsetX
+            collectionView.setContentOffset(CGPoint.init(x: offset, y: 0), animated: false)
         } else {
-            let offset = self.stytleModel.itemSize.height * CGFloat(self.itemCount) * 50.0 * 0.5 - cellOffsetY
-            self.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
+            let offset = stytleModel.itemSize.height * CGFloat(itemCount) * 50.0 * 0.5 - cellOffsetY
+            collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: false)
         }
     }
 }
