@@ -133,17 +133,17 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
 
-  spec.dependency "QSExtensions/Qs"
   spec.swift_version = '5'
 
   # 划分文件夹
   spec.subspec "BannerView" do |ss| 
-    ss.source_files = "QSCardBanner/QSCardBanner/QSCardBanner/Code/BaseBannerView/*.{swift}"
+    ss.source_files = "QSCardBanner/QSCardBanner/Code/BaseBannerView/*.{swift}"
     ss.dependency "QSCardBanner/PageControl"
+    ss.dependency "QSExtensions/Qs"
   end
 
   spec.subspec "PageControl" do |ss| 
-    ss.source_files = "QSCardBanner/QSCardBanner/QSCardBanner/Code/PageControl/*.{swift}"
+    ss.source_files = "QSCardBanner/QSCardBanner/Code/PageControl/*.{swift}"
   end
 
 end
