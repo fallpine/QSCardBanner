@@ -1,6 +1,6 @@
 # QSCardBanner
 这是一个轮播器的基类，其中QSBaseBannerView不能直接使用，使用方法下面会详细说明；但里面的QSPageControl可以单独拿出来使用
-- #### 集成方法：直接用Pod导入，pod 'QSCardBanner'
+- #### 集成方法：直接用Pod导入，pod 'QSCardBanner'，pod 'QSCardBanner/PageControl'
 
 先看下效果：录屏后转为gif有点模糊，可以直接下载demo，运行查看效果，demo中演示的图片来自百度图片，如有版权问题，请联系我删除
 
@@ -91,3 +91,6 @@ private lazy var ovalPageC: QSPageControl = {
       return pageC
 }()
 ```
+
+#### 版本更新
+2.0.0版本之后需要使用iOS11才能使用，如果需要支持iOS11之前版本，可使用2.0.0之前版本
