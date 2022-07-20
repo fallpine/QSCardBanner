@@ -49,7 +49,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
             if dataArray.count <= 1 {
                 timer?.qs_suspend()
             } else {
-                timer?.qs_restart(timeInterval: TimeInterval(stytleModel.timeInterval))
+                timer?.qs_restart(dueTime: stytleModel.timeInterval)
             }
             
             if let collectionV = collectionView {
@@ -185,14 +185,14 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // 重新开启定时器
         if timer != nil {
-            timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
+            timer?.qs_restart(dueTime: stytleModel.timeInterval)
         }
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         // 重新开启定时器
         if timer != nil {
-            timer?.qs_restart(timeInterval: TimeInterval(self.stytleModel.timeInterval))
+            timer?.qs_restart(dueTime: stytleModel.timeInterval)
         }
     }
     
@@ -282,7 +282,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     /// 设置定时器
     private func qs_createTimer() {
-        timer = Timer.qs_timer(isPerform: false, interval: TimeInterval(stytleModel.timeInterval)) { [weak self] in
+        timer = Timer.scheduledTimer(withTimeInterval: stytleModel.timeInterval, repeats: true) { [weak self] timer in
             guard let weakSelf = self else { return }
             weakSelf.isInit = false
             
@@ -322,6 +322,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
                 weakSelf.collectionView.setContentOffset(CGPoint.init(x: 0, y: offset), animated: true)
             }
         }
+        RunLoop.current.add(timer!, forMode: .common)
     }
     
     /// collectionView跳转到中间那个cell显示

@@ -30,6 +30,6 @@ class QSImageBannerViewCell: UICollectionViewCell {
     ///   - imgName: 图片名
     ///   - placeholder: 占位图
     func qs_setImage(imgName: String, placeholder: String?) {
-        imgView.qs_setImage(with: imgName, placeholder: placeholder ?? "")
+        imgView.qs_setImage(imgName, placeholder: placeholder)
     }
 }
