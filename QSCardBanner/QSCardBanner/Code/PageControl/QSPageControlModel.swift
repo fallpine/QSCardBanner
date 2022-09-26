@@ -32,6 +32,8 @@ public class QSPageControlModel: NSObject {
     public var otherPointImage: String?
     /// PageControl的位置, 默认居中
     public var pageControlLocation: QSPageControlLocation = .middle
+    /// PageControl的边缘距离，pageControlLocation为left：左边距离；right：右边距离；middle：设置无效
+    public var pageControlEdgeMargin: CGFloat = 0.0
     
     // MARK: - 如果是使用图片的话，不要设置这两个参数
     /// 当前点的放大倍数，默认1.0

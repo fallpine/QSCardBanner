@@ -107,11 +107,11 @@ public class QSPageControl: UIView {
         
         switch pageControlModel.pageControlLocation {
         case .right:
-            startX = frame.size.width - mainWidth - 30.0
+            startX = frame.size.width - mainWidth - pageControlModel.pageControlEdgeMargin
         case .middle:
             startX = (frame.size.width - mainWidth) / 2.0
         case .left:
-            startX = 30.0
+            startX = pageControlModel.pageControlEdgeMargin
         }
         
         // Y

@@ -42,6 +42,8 @@ public class QSBaseBannerModel: NSObject {
     public var otherPointImage: String?
     /// PageControl的位置, 默认居中
     public var pageControlLocation: QSPageControlLocation = .middle
+    /// PageControl的边缘距离，pageControlLocation为left：左边距离；right：右边距离；middle：设置无效
+    public var pageControlEdgeMargin: CGFloat = 0.0
     
     /// 当前点的放大倍数，默认1.0
     public var pointScale: CGFloat = 1.0

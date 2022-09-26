@@ -270,6 +270,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
         pageControlModel.currentPointImage = stytleModel.currentPointImage
         pageControlModel.otherPointImage = stytleModel.otherPointImage
         pageControlModel.pageControlLocation = stytleModel.pageControlLocation
+        pageControlModel.pageControlEdgeMargin = stytleModel.pageControlEdgeMargin
         pageControlModel.pointScale = stytleModel.pointScale
         pageControlModel.isEllipse = stytleModel.isEllipse
         
