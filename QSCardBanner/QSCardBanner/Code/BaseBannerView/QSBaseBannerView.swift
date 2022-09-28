@@ -44,6 +44,11 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     /// 图片数组
     public var dataArray: Array<Any> = Array.init() {
         didSet {
+            if collectionView != nil {
+                // 跳转到中间显示
+                qs_collectionViewJumpToCenter()
+            }
+            
             itemCount = dataArray.count
             
             if dataArray.count <= 1 {
@@ -327,7 +332,7 @@ open class QSBaseBannerView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     
     /// collectionView跳转到中间那个cell显示
-    func qs_collectionViewJumpToCenter() {
+    private func qs_collectionViewJumpToCenter() {
         if itemCount == 1 {
             return
         }
